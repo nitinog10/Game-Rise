@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameRise: Education</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .feature-header {
+            text-align: center;
+            margin: 2rem 0;
+            animation: fadeInDown 1s ease;
+        }
+
+        .feature-header h1 {
+            font-size: 3rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .feature-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            animation: fadeIn 1.2s ease;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .back-button:hover {
+            color: var(--primary-color);
+        }
+
+        .back-button i {
+            margin-right: 0.5rem;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .course-card {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .course-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .course-info {
+            padding: 1.5rem;
+        }
+
+        .course-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .instructor {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .instructor i {
+            margin-right: 0.5rem;
+        }
+
+        .course-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .course-details i {
+            margin-right: 0.5rem;
+        }
+
+        .enroll-btn {
+            width: 100%;
+            background: var(--gradient-primary);
+            color: var(--text-color);
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .enroll-btn:hover {
+            opacity: 0.9;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-fire-flame-curved"></i>
+            <h1>GameRise</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="tournaments.html">Tournaments</a></li>
+                <li><a href="education.html" class="active">Education</a></li>
+                <li><a href="career.html">Career</a></li>
+                <li><a href="leaderboards.html">Leaderboards</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button class="sign-in">Sign In</button>
+            <button class="join">Join GameRise</button>
+        </div>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <div class="feature-header">
+        <h1>Education</h1>
+    </div>
+
+    <div class="feature-content">
+        <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Home</a>
+
+        <div class="course-grid">
+            <div class="course-card">
+                <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+                </div>
+                <div class="course-info">
+                    <h3>League of Legends: From Beginner to Pro</h3>
+                    <p class="instructor"><i class="fas fa-user"></i> Instructor: Alex Johnson</p>
+                    <div class="course-details">
+                        <span><i class="fas fa-clock"></i> 12 Hours</span>
+                        <span><i class="fas fa-signal"></i> Beginner to Advanced</span>
+                    </div>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1518124880777-cf8c82231ffb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80');">
+                </div>
+                <div class="course-info">
+                    <h3>Valorant: Master Tactical FPS Skills</h3>
+                    <p class="instructor"><i class="fas fa-user"></i> Instructor: Sarah Chen</p>
+                    <div class="course-details">
+                        <span><i class="fas fa-clock"></i> 10 Hours</span>
+                        <span><i class="fas fa-signal"></i> Intermediate</span>
+                    </div>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+                </div>
+                <div class="course-info">
+                    <h3>CS:GO: Advanced Strategy Guide</h3>
+                    <p class="instructor"><i class="fas fa-user"></i> Instructor: Michael Smith</p>
+                    <div class="course-details">
+                        <span><i class="fas fa-clock"></i> 14 Hours</span>
+                        <span><i class="fas fa-signal"></i> Advanced</span>
+                    </div>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');">
+                </div>
+                <div class="course-info">
+                    <h3>Fortnite: Building and Editing Mastery</h3>
+                    <p class="instructor"><i class="fas fa-user"></i> Instructor: Tyler Jones</p>
+                    <div class="course-details">
+                        <span><i class="fas fa-clock"></i> 8 Hours</span>
+                        <span><i class="fas fa-signal"></i> All Levels</span>
+                    </div>
+                    <button class="enroll-btn">Enroll Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fa-solid fa-fire-flame-curved"></i>
+                <h2>GameRise</h2>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h3>Platform</h3>
+                    <ul>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="tournaments.html">Tournaments</a></li>
+                        <li><a href="leaderboards.html">Leaderboards</a></li>
+                        <li><a href="career.html">Career</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#guides">Guides</a></li>
+                        <li><a href="#faqs">FAQs</a></li>
+                        <li><a href="#support">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="#"><i class="fab fa-twitch"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 GameRise. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,670 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameRise: Empowering Esports Careers</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Feature cards styles */
+        .features-section {
+            padding: 4rem 5%;
+            background-color: var(--darker-bg);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background-color: var(--light-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            height: 100%;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
+            border-color: var(--primary-color);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 2rem auto 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.2);
+            font-size: 2rem;
+            color: #4CD4FF;
+            border: 2px solid #4CD4FF;
+            transition: all 0.4s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(76, 212, 255, 0.5);
+        }
+        
+        .feature-content {
+            padding: 1rem 1.5rem 2rem;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #4CD4FF;
+        }
+        
+        .feature-description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-link {
+            display: inline-block;
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-link:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* Game phases styles */
+        .game-phases {
+            padding: 4rem 5%;
+            text-align: center;
+            background-color: var(--dark-bg);
+        }
+        
+        .phases-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .phases-title span:first-child {
+            color: #fff;
+        }
+        
+        .phases-title span:last-child {
+            color: #4CD4FF;
+            margin-left: 10px;
+        }
+        
+        .phases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .phase-card {
+            background-color: var(--light-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+        
+        .phase-card:nth-child(1) {
+            background-image: url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+        }
+        
+        .phase-card:nth-child(2) {
+            background-image: url('https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+        }
+        
+        .phase-card:nth-child(3) {
+            background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+        }
+        
+        .phase-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .phase-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            color: #FFFFFF;
+            background: linear-gradient(135deg, #FF5733 0%, #C932FF 100%);
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .phase-card:hover .phase-icon {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 0 25px rgba(255, 87, 51, 0.7);
+        }
+        
+        .phase-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        /* Hero animations */
+        .hero-content {
+            position: relative;
+        }
+        
+        .hero-bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 87, 51, 0.2), rgba(201, 50, 255, 0.2));
+            z-index: -1;
+            animation: pulseAnimation 5s infinite alternate ease-in-out;
+        }
+        
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+        
+        .circle-2 {
+            width: 500px;
+            height: 500px;
+            top: -100px;
+            right: -200px;
+            animation-delay: 1s;
+        }
+        
+        .circle-3 {
+            width: 200px;
+            height: 200px;
+            bottom: -50px;
+            left: 50px;
+            animation-delay: 2s;
+        }
+        
+        @keyframes pulseAnimation {
+            0% {
+                transform: scale(1);
+                opacity: 0.2;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.2;
+            }
+        }
+        
+        /* Glowing effect */
+        .glow-effect {
+            position: relative;
+        }
+        
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            box-shadow: 0 0 20px rgba(76, 212, 255, 0.7);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .glow-effect:hover::after {
+            opacity: 1;
+        }
+        
+        /* Floating animation */
+        .floating {
+            animation: floating 3s infinite ease-in-out;
+        }
+        
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        /* Image animations and effects */
+        .img-hover-zoom {
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .img-hover-zoom img {
+            transition: transform 0.8s ease;
+        }
+        
+        .img-hover-zoom:hover img {
+            transform: scale(1.1);
+        }
+        
+        .tilt-effect {
+            transition: transform 0.5s ease;
+        }
+        
+        .tilt-effect:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+        }
+        
+        .color-shift img {
+            filter: grayscale(80%);
+            transition: filter 0.5s ease;
+        }
+        
+        .color-shift:hover img {
+            filter: grayscale(0%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-fire-flame-curved glow-pulse"></i>
+            <h1>GameRise</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="games.html" class="nav-link"><i class="fas fa-gamepad"></i> Top Games</a></li>
+                <li><a href="tournaments.html" class="nav-link"><i class="fas fa-trophy"></i> Tournaments</a></li>
+                <li><a href="education.html" class="nav-link"><i class="fas fa-graduation-cap"></i> Education</a></li>
+                <li><a href="career.html" class="nav-link"><i class="fas fa-briefcase"></i> Career Paths</a></li>
+                <li><a href="leaderboards.html" class="nav-link"><i class="fas fa-chart-line"></i> Leaderboards</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button class="sign-in">Sign In</button>
+            <button class="join">Join GameRise</button>
+        </div>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-circle circle-1"></div>
+        <div class="hero-bg-circle circle-2"></div>
+        <div class="hero-bg-circle circle-3"></div>
+        <div class="hero-content">
+            <div class="animated-logo" style="margin-bottom: 2rem;">
+                <img src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&h=200&q=80" alt="GameRise Logo" class="pulse-animation floating-3d" style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--primary-color); box-shadow: 0 0 25px rgba(255, 87, 51, 0.7);">
+                <div class="particle-effect"></div>
+            </div>
+            <h1>Empowering Esports Careers</h1>
+            <p>Showcase your skills, compete in tournaments, and connect with professional esports organizations to launch your gaming career.</p>
+            <div class="cta-buttons">
+                <button class="start-journey">Start Your Journey</button>
+                <button class="explore-games">Explore Games</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <div class="nav-icons">
+            <a href="#games"><i class="fas fa-gamepad"></i><span>Games</span></a>
+            <a href="#tournaments"><i class="fas fa-trophy"></i><span>Tournaments</span></a>
+            <a href="#leaderboards"><i class="fas fa-chart-simple"></i><span>Leaderboards</span></a>
+            <a href="#profile"><i class="fas fa-user"></i><span>Profile</span></a>
+            <a href="#career"><i class="fas fa-briefcase"></i><span>Career</span></a>
+        </div>
+    </div>
+
+    <!-- Feature Cards Section -->
+    <section class="features-section">
+        
+        <div class="features-grid">
+            <a href="games.html" class="feature-card reveal-on-scroll" data-delay="100">
+                <div class="feature-image" style="height: 180px; overflow: hidden; border-radius: 8px 8px 0 0;">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Top Games">
+                </div>
+                <div class="feature-icon floating-3d">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="feature-content">
+                    <h3 class="feature-title">Top Games</h3>
+                    <p class="feature-description">Explore popular esports titles with detailed guides</p>
+                    <span class="feature-link">View Games <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+            <a href="tournaments.html" class="feature-card reveal-on-scroll" data-delay="200">
+                <div class="feature-image" style="height: 180px; overflow: hidden; border-radius: 8px 8px 0 0;">
+                    <img src="https://images.unsplash.com/photo-1511882150382-421056c89033?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Tournaments">
+                </div>
+                <div class="feature-icon floating-3d">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="feature-content">
+                    <h3 class="feature-title">Tournaments</h3>
+                    <p class="feature-description">Compete in events for all skill levels</p>
+                    <span class="feature-link">View Tournaments <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+            <a href="education.html" class="feature-card reveal-on-scroll" data-delay="300">
+                <div class="feature-image" style="height: 180px; overflow: hidden; border-radius: 8px 8px 0 0;">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Education">
+                </div>
+                <div class="feature-icon floating-3d">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="feature-content">
+                    <h3 class="feature-title">Education</h3>
+                    <p class="feature-description">Learn essential skills from industry experts</p>
+                    <span class="feature-link">View Courses <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+            <a href="career.html" class="feature-card reveal-on-scroll" data-delay="400">
+                <div class="feature-image" style="height: 180px; overflow: hidden; border-radius: 8px 8px 0 0;">
+                    <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Career Paths">
+                </div>
+                <div class="feature-icon floating-3d">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="feature-content">
+                    <h3 class="feature-title">Career Paths</h3>
+                    <p class="feature-description">Discover opportunities in the esports industry</p>
+                    <span class="feature-link">Explore Careers <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+            <a href="leaderboards.html" class="feature-card reveal-on-scroll" data-delay="500">
+                <div class="feature-image" style="height: 180px; overflow: hidden; border-radius: 8px 8px 0 0;">
+                    <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Leaderboards">
+                </div>
+                <div class="feature-icon floating-3d glow-pulse">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="feature-content">
+                    <h3 class="feature-title">Leaderboards</h3>
+                    <p class="feature-description">Track your progress and rank among other players</p>
+                    <span class="feature-link">View Rankings <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Top Esports Games -->
+    <section class="top-games">
+        <div class="section-header">
+            <h2>Top Esports Games</h2>
+            <a href="games.html" class="view-all">View All <i class="fas fa-angle-right"></i></a>
+        </div>
+        <div class="games-grid">
+            <div class="game-card">
+                <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+                    <div class="overlay">
+                        <h3>League of Legends</h3>
+                        <p>MOBA</p>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1518124880777-cf8c82231ffb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80');">
+                    <div class="overlay">
+                        <h3>Valorant</h3>
+                        <p>FPS</p>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+                    <div class="overlay">
+                        <h3>CS:GO</h3>
+                        <p>FPS</p>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+                    <div class="overlay">
+                        <h3>Dota 2</h3>
+                        <p>MOBA</p>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1605901309584-818e25960a8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=100');">
+                    <div class="overlay">
+                        <h3>Free Fire</h3>
+                        <p>Battle Royale</p>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=100');">
+                    <div class="overlay">
+                        <h3>Street Fighter 6</h3>
+                        <p>Fighting</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Tournaments -->
+    <section class="tournaments">
+        <div class="section-header">
+            <h2>Upcoming Tournaments</h2>
+            <a href="tournaments.html" class="view-all">View All <i class="fas fa-angle-right"></i></a>
+        </div>
+        <div class="tournament-grid">
+            <div class="tournament-card">
+                <div class="tournament-image" style="background-image: url('https://images.unsplash.com/photo-1545809074-59472b3f5ecc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+                    <div class="tournament-date">
+                        <span class="day">23</span>
+                        <span class="month">JUN</span>
+                    </div>
+                </div>
+                <div class="tournament-info">
+                    <h3>GameRise Summer Championship</h3>
+                    <p class="game">League of Legends</p>
+                    <div class="tournament-details">
+                        <span><i class="fas fa-users"></i> 32 Teams</span>
+                        <span><i class="fas fa-trophy"></i> $10,000 Prize</span>
+                    </div>
+                    <button class="register-btn">Register</button>
+                </div>
+            </div>
+            <div class="tournament-card">
+                <div class="tournament-image" style="background-image: url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80');">
+                    <div class="tournament-date">
+                        <span class="day">15</span>
+                        <span class="month">JUL</span>
+                    </div>
+                </div>
+                <div class="tournament-info">
+                    <h3>FPS Masters</h3>
+                    <p class="game">Valorant</p>
+                    <div class="tournament-details">
+                        <span><i class="fas fa-users"></i> 16 Teams</span>
+                        <span><i class="fas fa-trophy"></i> $5,000 Prize</span>
+                    </div>
+                    <button class="register-btn">Register</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Phases Section -->
+    <section class="game-phases">
+        <h2 class="phases-title"><span>Game</span> <span>Phases</span></h2>
+        <div class="phases-grid">
+            <div class="phase-card">
+                <div class="phase-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="phase-title">Foundation</h3>
+                <p>Learn the esports landscape, game mechanics, and basic strategies to build your foundation.</p>
+            </div>
+            <div class="phase-card">
+                <div class="phase-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3 class="phase-title">Tournaments</h3>
+                <p>Participate in competitive tournaments to showcase your skills and gain recognition.</p>
+            </div>
+            <div class="phase-card">
+                <div class="phase-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3 class="phase-title">Recognition</h3>
+                <p>Get noticed by professional teams and organizations through your performance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="roadmap">
+        <div class="section-header">
+            <h2>Your Esports Career Path</h2>
+        </div>
+        <div class="roadmap-container">
+            <div class="roadmap-phase">
+                <div class="phase-number">1</div>
+                <div class="phase-content">
+                    <h3>Foundation</h3>
+                    <p>Learn the esports landscape, game mechanics, and basic strategies</p>
+                    <ul>
+                        <li>Game guides for top 20 esports titles</li>
+                        <li>Interactive tutorials and community tips</li>
+                        <li>Player education modules</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="roadmap-phase">
+                <div class="phase-number">2</div>
+                <div class="phase-content">
+                    <h3>Skill Showcasing</h3>
+                    <p>Participate in tournaments and track your performance metrics</p>
+                    <ul>
+                        <li>Tiered tournaments for all skill levels</li>
+                        <li>Performance KPI tracking</li>
+                        <li>Highlight standout plays</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="roadmap-phase">
+                <div class="phase-number">3</div>
+                <div class="phase-content">
+                    <h3>Recognition</h3>
+                    <p>Get rated and showcase your skills with detailed stat cards</p>
+                    <ul>
+                        <li>Dynamic leaderboards</li>
+                        <li>Global player rankings</li>
+                        <li>Detailed performance stat cards</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Launch Your Esports Career?</h2>
+            <p>Join thousands of players already on their path to pro gaming</p>
+            <button class="join-now">Join GameRise Today</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fa-solid fa-fire-flame-curved"></i>
+                <h2>GameRise</h2>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h3>Platform</h3>
+                    <ul>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="tournaments.html">Tournaments</a></li>
+                        <li><a href="leaderboards.html">Leaderboards</a></li>
+                        <li><a href="career.html">Career</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#guides">Guides</a></li>
+                        <li><a href="#faqs">FAQs</a></li>
+                        <li><a href="#support">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="#"><i class="fab fa-twitch"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 GameRise. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

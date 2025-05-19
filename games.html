@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameRise: Top Games</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .feature-header {
+            text-align: center;
+            margin: 2rem 0;
+            animation: fadeInDown 1s ease;
+        }
+
+        .feature-header h1 {
+            font-size: 3rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .feature-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            animation: fadeIn 1.2s ease;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .back-button:hover {
+            color: var(--primary-color);
+        }
+
+        .back-button i {
+            margin-right: 0.5rem;
+        }
+
+        .games-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .game-large-card {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+            height: 100%;
+            box-shadow: var(--shadow-md);
+        }
+
+        .game-large-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .game-image-large {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-image-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .game-large-card:hover .game-image-large img {
+            transform: scale(1.05);
+        }
+
+        .game-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--text-color);
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .game-info {
+            padding: 1.5rem;
+        }
+
+        .game-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .game-description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .game-stats i {
+            margin-right: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .view-guide-btn {
+            width: 100%;
+            background: var(--gradient-secondary);
+            color: var(--text-color);
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .view-guide-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .game-guides {
+            background-color: var(--darker-bg);
+            padding: 2rem;
+            margin-top: 3rem;
+            border-radius: 8px;
+        }
+
+        .guide-section {
+            margin-bottom: 2rem;
+        }
+
+        .guide-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .guide-content {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .guide-content p {
+            margin-bottom: 1rem;
+        }
+
+        .guide-content ul {
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .guide-content ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .game-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: var(--light-bg);
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .modal-header {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .modal-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-title {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .modal-subtitle {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-fire-flame-curved glow-pulse"></i>
+            <h1>GameRise</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="games.html" class="nav-link active"><i class="fas fa-gamepad"></i> Top Games</a></li>
+                <li><a href="tournaments.html" class="nav-link"><i class="fas fa-trophy"></i> Tournaments</a></li>
+                <li><a href="education.html" class="nav-link"><i class="fas fa-graduation-cap"></i> Education</a></li>
+                <li><a href="career.html" class="nav-link"><i class="fas fa-briefcase"></i> Career Paths</a></li>
+                <li><a href="leaderboards.html" class="nav-link"><i class="fas fa-chart-line"></i> Leaderboards</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button class="sign-in">Sign In</button>
+            <button class="join">Join GameRise</button>
+        </div>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <div class="feature-header">
+        <h1>Top Esports Games</h1>
+    </div>
+
+    <div class="feature-content">
+        <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Home</a>
+
+        <div class="games-container">
+            <div class="game-large-card reveal-on-scroll" data-delay="100">
+                <div class="game-image-large">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="League of Legends">
+                    <div class="game-category">MOBA</div>
+                </div>
+                <div class="game-info">
+                    <h3>League of Legends</h3>
+                    <p class="game-description">A highly competitive team-based strategy game with over 140 champions.</p>
+                    <div class="game-stats">
+                        <span><i class="fas fa-users"></i> 5v5</span>
+                        <span><i class="fas fa-star"></i> Difficulty: Medium</span>
+                    </div>
+                    <a href="#" class="view-guide-btn" data-game="lol">View Guide</a>
+                </div>
+            </div>
+            <div class="game-large-card reveal-on-scroll" data-delay="200">
+                <div class="game-image-large">
+                    <img src="https://images.unsplash.com/photo-1518124880777-cf8c82231ffb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="Valorant">
+                    <div class="game-category">FPS</div>
+                </div>
+                <div class="game-info">
+                    <h3>Valorant</h3>
+                    <p class="game-description">A tactical shooter with unique agent abilities and precision gunplay.</p>
+                    <div class="game-stats">
+                        <span><i class="fas fa-users"></i> 5v5</span>
+                        <span><i class="fas fa-star"></i> Difficulty: Hard</span>
+                    </div>
+                    <a href="#" class="view-guide-btn" data-game="valorant">View Guide</a>
+                </div>
+            </div>
+            <div class="game-large-card reveal-on-scroll" data-delay="300">
+                <div class="game-image-large">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="CS:GO">
+                    <div class="game-category">FPS</div>
+                </div>
+                <div class="game-info">
+                    <h3>CS:GO</h3>
+                    <p class="game-description">A classic tactical FPS with an emphasis on skill and team strategy.</p>
+                    <div class="game-stats">
+                        <span><i class="fas fa-users"></i> 5v5</span>
+                        <span><i class="fas fa-star"></i> Difficulty: Hard</span>
+                    </div>
+                    <a href="#" class="view-guide-btn" data-game="csgo">View Guide</a>
+                </div>
+            </div>
+            <div class="game-large-card reveal-on-scroll" data-delay="400">
+                <div class="game-image-large">
+                    <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Dota 2">
+                    <div class="game-category">MOBA</div>
+                </div>
+                <div class="game-info">
+                    <h3>Dota 2</h3>
+                    <p class="game-description">Complex MOBA with deep strategic gameplay and over 100 heroes.</p>
+                    <div class="game-stats">
+                        <span><i class="fas fa-users"></i> 5v5</span>
+                        <span><i class="fas fa-star"></i> Difficulty: Very Hard</span>
+                    </div>
+                    <a href="#" class="view-guide-btn" data-game="dota2">View Guide</a>
+                </div>
+            </div>
+            <div class="game-large-card reveal-on-scroll" data-delay="700">
+                <div class="game-image-large">
+                    <img src="https://via.placeholder.com/1500x500" alt="Free Fire">  <!-- Placeholder -->
+                    <div class="game-category">Battle Royale</div>
+                </div>
+                <div class="game-info">
+                    <h3>Free Fire</h3>
+                    <p class="game-description">Popular mobile battle royale with fast-paced combat and unique character abilities.</p>
+                    <div class="game-stats">
+                        <span><i class="fas fa-users"></i> 50 Players</span>
+                        <span><i class="fas fa-star"></i> Difficulty: Medium</span>
+                    </div>
+                    <a href="#" class="view-guide-btn" data-game="freefire">View Guide</a>
+                </div>
+            </div>
+            <div class="game-large-card reveal-on-scroll" data-delay="800">
+                <div class="game-image-large">
+                    <img src="https://via.placeholder.com/1500x500" alt="Street Fighter 6">  <!-- Placeholder -->
+                    <div class="game-category">Fighting</div>
+                </div>
+                <div class="game-info">
+                    <h3>Street Fighter 6</h3>
+                    <p class="game-description">Classic fighting game with competitive depth and iconic characters.</p>
+                    <div class="game-stats">
+                        <span><i class="fas fa-users"></i> 1v1</span>
+                        <span><i class="fas fa-star"></i> Difficulty: Hard</span>
+                    </div>
+                    <a href="#" class="view-guide-btn" data-game="sf6">View Guide</a>
+                </div>
+            </div>
+            <div class="game-large-card reveal-on-scroll" data-delay="500">
+                <div class="game-image-large">
+                    <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Fortnite">
+                    <div class="game-category">Battle Royale</div>
+                </div>
+                <div class="game-info">
+                    <h3>Fortnite</h3>
+                    <p class="game-description">Popular battle royale game with unique building mechanics and events.</p>
+                    <div class="game-stats">
+                        <span><i class="fas fa-users"></i> 100 Players</span>
+                        <span><i class="fas fa-star"></i> Difficulty: Medium</span>
+                    </div>
+                    <a href="#" class="view-guide-btn" data-game="fortnite">View Guide</a>
+                </div>
+            </div>
+            <div class="game-large-card reveal-on-scroll" data-delay="600">
+                <div class="game-image-large">
+                    <img src="https://images.unsplash.com/photo-1566577739112-5180d4bf9390?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1526&q=80" alt="Overwatch">
+                    <div class="game-category">Team FPS</div>
+                </div>
+                <div class="game-info">
+                    <h3>Overwatch</h3>
+                    <p class="game-description">Team-based hero shooter with diverse characters and objectives.</p>
+                    <div class="game-stats">
+                        <span><i class="fas fa-users"></i> 5v5</span>
+                        <span><i class="fas fa-star"></i> Difficulty: Medium</span>
+                    </div>
+                    <a href="#" class="view-guide-btn" data-game="overwatch">View Guide</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Guide Modals -->
+    <div id="gameModal" class="game-modal">
+        <div class="modal-content">
+            <div class="modal-close"><i class="fas fa-times"></i></div>
+            <div class="modal-header">
+                <img id="modalImage" src="" alt="Game">
+            </div>
+            <div class="modal-body">
+                <h2 id="modalTitle" class="modal-title"></h2>
+                <p id="modalCategory" class="modal-subtitle"></p>
+
+                <div id="modalGuide" class="game-guides">
+                    <!-- Guide content will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fa-solid fa-fire-flame-curved"></i>
+                <h2>GameRise</h2>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h3>Platform</h3>
+                    <ul>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="tournaments.html">Tournaments</a></li>
+                        <li><a href="leaderboards.html">Leaderboards</a></li>
+                        <li><a href="career.html">Career</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#guides">Guides</a></li>
+                        <li><a href="#faqs">FAQs</a></li>
+                        <li><a href="#support">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="#"><i class="fab fa-twitch"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 GameRise. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Game guides data
+        const gameGuides = {
+            lol: {
+                title: "League of Legends",
+                category: "MOBA",
+                image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                content: `
+                    <div class="guide-section">
+                        <h3>Getting Started</h3>
+                        <div class="guide-content">
+                            <p>League of Legends is a team-based strategy game where two teams of five champions face off to destroy the other's base. The game combines elements of RPG and RTS genres, offering a unique experience that has captivated millions around the world.</p>
+                            <p>The game is played on a map called Summoner's Rift, which has three lanes (top, middle, and bottom) and a jungle area between them. Each player controls a champion with unique abilities and plays a specific role on the team.</p>
+                        </div>
+                    </div>
+                    <div class="guide-section">
+                        <h3>Key Roles</h3>
+                        <div class="guide-content">
+                            <ul>
+                                <li><strong>Top Lane:</strong> Usually played by tanks or bruisers who can hold their own in a 1v1 situation.</li>
+                                <li><strong>Jungle:</strong> Roams the jungle area, collects resources, and helps lanes by ganking.</li>
+                                <li><strong>Mid Lane:</strong> Typically mages or assassins who have high damage output and can roam to other lanes.</li>
+                                <li><strong>Bot Lane (ADC):</strong> Attack Damage Carry, focuses on dealing consistent damage from range.</li>
+                                <li><strong>Support:</strong> Protects the ADC and provides utility to the team through vision control and crowd control abilities.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="guide-section">
+                        <h3>Basic Strategy</h3>
+                        <div class="guide-content">
+                            <p>The primary objective in League of Legends is to destroy the enemy's Nexus, located in their base. To reach it, teams must destroy a series of defensive structures called turrets along each lane.</p>
+                            <p>During the early game, focus on farming minions for gold and experience. In the mid game, teams should coordinate to secure objectives like Dragon and Herald. By late game, team fights become crucial, with the winning team often able to push for victory.</p>
+                        </div>
+                    </div>
+                    <div class="guide-section">
+                        <h3>Pro Tips</h3>
+                        <div class="guide-content">
+                            <ul>
+                                <li>Map awareness is crucial - use wards to maintain vision and watch the minimap regularly.</li>
+                                <li>Focus on consistent CS (Creep Score) - even a small lead in gold can make a big difference.</li>
+                                <li>Communication is key - use pings and coordinate with your team for objectives.</li>
+                                <li>Learn a small pool of champions deeply rather than playing many champions at a basic level.</li>
+                                <li>Watch professional games and high-ELO streamers to improve your understanding of advanced strategies.</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            valorant: {
+                title: "Valorant",
+                category: "FPS",
+                image: "https://images.unsplash.com/photo-1518124880777-cf8c82231ffb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80",
+                content: `
+                    <div class="guide-section">
+                        <h3>Game Overview</h3>
+                        <div class="guide-content">
+                            <p>Valorant is a 5v5 tactical shooter developed by Riot Games. It combines precise gunplay with unique agent abilities, creating a dynamic competitive experience. The game is focused on planting or defusing a bomb (called the Spike) and eliminating the enemy team.</p>
+                            <p>Each match consists of 24 rounds, with teams switching between attack and defense at halftime. The first team to win 13 rounds wins the match.</p>
+                        </div>
+                    </div>
+                    <div class="guide-section">
+                        <h3>Agent Types</h3>
+                        <div class="guide-content">
+                            <ul>
+                                <li><strong>Duelists:</strong> Entry fraggers who excel at creating space and getting kills (e.g., Jett, Phoenix).</li>
+                                <li><strong>Sentinels:</strong> Defensive specialists who can lock down areas and provide intel (e.g., Cypher, Killjoy).</li>
+                                <li><strong>Initiators:</strong> Gather information and break through defensive setups (e.g., Sova, Breach).</li>
+                                <li><strong>Controllers:</strong> Shape the battlefield using smoke and zone control (e.g., Omen, Brimstone).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="guide-section">
+                        <h3>Fundamental Mechanics</h3>
+                        <div class="guide-content">
+                            <p>Valorant's gunplay emphasizes precision and recoil control. Unlike some other FPS games, running while shooting significantly reduces accuracy. Learning to counter-strafe (stopping your movement before shooting) is essential.</p>
+                            <p>Economy management is also crucial. Teams earn money based on round results, kills, and objective completion. This money is used to purchase weapons, shields, and abilities for the next round.</p>
+                        </div>
+                    </div>
+                    <div class="guide-section">
+                        <h3>Pro Tips</h3>
+                        <div class="guide-content">
+                            <ul>
+                                <li>Crosshair placement is key - always keep your crosshair at head level where enemies are likely to appear.</li>
+                                <li>Learn common angles and pre-aim at these positions when clearing sites.</li>
+                                <li>Utility usage is what separates good players from great ones - coordinate with your team to maximize effectiveness.</li>
+                                <li>Sound is incredibly important - use quality headphones and learn to identify specific audio cues.</li>
+                                <li>Practice recoil control in the range and develop muscle memory for common spray patterns.</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            // Add other game guides similarly
+            csgo: {
+                title: "Counter-Strike: Global Offensive",
+                category: "FPS",
+                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                content: `
+                    <div class="guide-section">
+                        <h3>Game Basics</h3>
+                        <div class="guide-content">
+                            <p>Counter-Strike: Global Offensive (CS:GO) is a classic tactical first-person shooter with a focus on team-based strategy and individual skill. Two teams of 5 players compete: Terrorists (T) and Counter-Terrorists (CT).</p>
+                            <p>The main competitive mode involves the Terrorist team attempting to plant and detonate a bomb at one of two bombsites, while the Counter-Terrorists must prevent the bomb from being planted or defuse it if planted.</p>
+                        </div>
+                    </div>
+                    <div class="guide-section">
+                        <h3>Economy System</h3>
+                        <div class="guide-content">
+                            <p>CS:GO has a sophisticated economy system that rewards performance and strategic decision-making. Players earn money for kills, round wins, bomb plants/defuses, and more.</p>
+                            <p>Managing your team's economy is crucial - sometimes it's better to save money by not buying expensive equipment in a round you're likely to lose, allowing for a full buy in the next round.</p>
+                        </div>
+                    </div>
+                    <div class="guide-section">
+                        <h3>Weapon Mastery</h3>
+                        <div class="guide-content">
+                            <p>Each weapon in CS:GO has a unique recoil pattern. Learning these patterns and how to control them is essential for consistent aim.</p>
+                            <p>The most commonly used weapons include:</p>
+                            <ul>
+                                <li><strong>AK-47:</strong> T-side rifle, high damage with a one-shot headshot potential.</li>
+                                <li><strong>M4A4/M4A1-S:</strong> CT-side rifles, accurate but require two headshots to kill.</li>
+                                <li><strong>AWP:</strong> Powerful sniper rifle that can kill with one shot to most parts of the body.</li>
+                                <li><strong>Desert Eagle:</strong> Powerful pistol with high skill ceiling.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="guide-section">
+                        <h3>Advanced Tips</h3>
+                        <div class="guide-content">
+                            <ul>
+                                <li>Learn smoke, flash, and molotov lineups for key areas on each map.</li>
+                                <li>Develop a consistent sensitivity and stick with it to build muscle memory.</li>
+                                <li>Communicate effectively - give clear, concise callouts about enemy positions.</li>
+                                <li>Learn common positions and pre-aim at these spots when entering sites.</li>
+                                <li>Watch professional matches to understand high-level strategies and positioning.</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            dota2: {
+                title: "Dota 2",
+                category: "MOBA",
+                image: "https://via.placeholder.com/1500x500", // Placeholder
+                content: "Content for Dota 2 guide"
+            },
+            freefire: {
+                title: "Free Fire",
+                category: "Battle Royale",
+                image: "https://via.placeholder.com/1500x500", // Placeholder
+                content: "Content for Free Fire guide"
+            },
+            sf6: {
+                title: "Street Fighter 6",
+                category: "Fighting",
+                image: "https://via.placeholder.com/1500x500", // Placeholder
+                content: "Content for Street Fighter 6 guide"
+            }
+        };
+
+        // Game guide modal functionality
+        const gameModal = document.getElementById('gameModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalCategory = document.getElementById('modalCategory');
+        const modalGuide = document.getElementById('modalGuide');
+        const modalClose = document.querySelector('.modal-close');
+
+        // Open modal when clicking on guide buttons
+        document.querySelectorAll('.view-guide-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const gameId = this.getAttribute('data-game');
+                const game = gameGuides[gameId];
+
+                if (game) {
+                    modalImage.src = game.image;
+                    modalTitle.textContent = game.title;
+                    modalCategory.textContent = game.category;
+                    modalGuide.innerHTML = game.content;
+                    gameModal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // Close modal
+        modalClose.addEventListener('click', function() {
+            gameModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === gameModal) {
+                gameModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>

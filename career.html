@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameRise: Career Paths</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .feature-header {
+            text-align: center;
+            margin: 2rem 0;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .feature-header h1 {
+            font-size: 3rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .feature-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            animation: fadeIn 1.2s ease;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .back-button:hover {
+            color: var(--primary-color);
+        }
+        
+        .back-button i {
+            margin-right: 0.5rem;
+        }
+        
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .career-card {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+            height: 100%;
+        }
+        
+        .career-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .career-icon {
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--gradient-dark);
+            font-size: 3rem;
+            color: var(--primary-color);
+        }
+        
+        .career-info {
+            padding: 1.5rem;
+        }
+        
+        .career-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        
+        .career-description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .career-details {
+            margin-bottom: 1.25rem;
+        }
+        
+        .career-details h4 {
+            color: var(--text-color);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .career-details ul {
+            padding-left: 1.5rem;
+            color: var(--text-muted);
+        }
+        
+        .career-details ul li {
+            margin-bottom: 0.25rem;
+        }
+        
+        .explore-btn {
+            width: 100%;
+            background: var(--gradient-primary);
+            color: var(--text-color);
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .explore-btn:hover {
+            opacity: 0.9;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-fire-flame-curved"></i>
+            <h1>GameRise</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="tournaments.html">Tournaments</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="career.html" class="active">Career</a></li>
+                <li><a href="leaderboards.html">Leaderboards</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button class="sign-in">Sign In</button>
+            <button class="join">Join GameRise</button>
+        </div>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <div class="feature-header">
+        <h1>Career Paths</h1>
+    </div>
+
+    <div class="feature-content">
+        <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        
+        <div class="career-grid">
+            <div class="career-card">
+                <div class="career-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="career-info">
+                    <h3>Professional Player</h3>
+                    <p class="career-description">Compete at the highest level in professional esports leagues and tournaments.</p>
+                    <div class="career-details">
+                        <h4>Key Skills:</h4>
+                        <ul>
+                            <li>Elite gameplay mechanics</li>
+                            <li>Strategic thinking</li>
+                            <li>Team coordination</li>
+                            <li>Mental fortitude</li>
+                        </ul>
+                    </div>
+                    <button class="explore-btn">Explore Path</button>
+                </div>
+            </div>
+            <div class="career-card">
+                <div class="career-icon">
+                    <i class="fas fa-microphone"></i>
+                </div>
+                <div class="career-info">
+                    <h3>Esports Caster</h3>
+                    <p class="career-description">Commentate and analyze esports matches for live audiences and broadcasts.</p>
+                    <div class="career-details">
+                        <h4>Key Skills:</h4>
+                        <ul>
+                            <li>Game knowledge</li>
+                            <li>Clear communication</li>
+                            <li>Quick thinking</li>
+                            <li>Entertaining personality</li>
+                        </ul>
+                    </div>
+                    <button class="explore-btn">Explore Path</button>
+                </div>
+            </div>
+            <div class="career-card">
+                <div class="career-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <div class="career-info">
+                    <h3>Coach</h3>
+                    <p class="career-description">Guide and develop teams to improve performance and achieve competitive success.</p>
+                    <div class="career-details">
+                        <h4>Key Skills:</h4>
+                        <ul>
+                            <li>Leadership abilities</li>
+                            <li>Strategic analysis</li>
+                            <li>Communication skills</li>
+                            <li>Performance psychology</li>
+                        </ul>
+                    </div>
+                    <button class="explore-btn">Explore Path</button>
+                </div>
+            </div>
+            <div class="career-card">
+                <div class="career-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="career-info">
+                    <h3>Esports Analyst</h3>
+                    <p class="career-description">Provide in-depth game analysis and strategy insights for teams and broadcasts.</p>
+                    <div class="career-details">
+                        <h4>Key Skills:</h4>
+                        <ul>
+                            <li>Data analysis</li>
+                            <li>Game theory</li>
+                            <li>Pattern recognition</li>
+                            <li>Clear presentation</li>
+                        </ul>
+                    </div>
+                    <button class="explore-btn">Explore Path</button>
+                </div>
+            </div>
+            <div class="career-card">
+                <div class="career-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <div class="career-info">
+                    <h3>Content Creator</h3>
+                    <p class="career-description">Produce gaming content across platforms like YouTube, Twitch, and social media.</p>
+                    <div class="career-details">
+                        <h4>Key Skills:</h4>
+                        <ul>
+                            <li>Video production</li>
+                            <li>Audience engagement</li>
+                            <li>Consistency</li>
+                            <li>Personal branding</li>
+                        </ul>
+                    </div>
+                    <button class="explore-btn">Explore Path</button>
+                </div>
+            </div>
+            <div class="career-card">
+                <div class="career-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="career-info">
+                    <h3>Esports Management</h3>
+                    <p class="career-description">Oversee operations, partnerships, and business development for esports organizations.</p>
+                    <div class="career-details">
+                        <h4>Key Skills:</h4>
+                        <ul>
+                            <li>Business acumen</li>
+                            <li>People management</li>
+                            <li>Marketing knowledge</li>
+                            <li>Industry networking</li>
+                        </ul>
+                    </div>
+                    <button class="explore-btn">Explore Path</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fa-solid fa-fire-flame-curved"></i>
+                <h2>GameRise</h2>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h3>Platform</h3>
+                    <ul>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="tournaments.html">Tournaments</a></li>
+                        <li><a href="leaderboards.html">Leaderboards</a></li>
+                        <li><a href="career.html">Career</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#guides">Guides</a></li>
+                        <li><a href="#faqs">FAQs</a></li>
+                        <li><a href="#support">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="#"><i class="fab fa-twitch"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 GameRise. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
