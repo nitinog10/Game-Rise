@@ -1,9 +1,11 @@
+```python
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 from tkinter import filedialog
 import os
 import csv
+from utils import add_visual_effect
 
 class GameRiseApp(tk.Tk):
     def __init__(self):
@@ -17,8 +19,8 @@ class GameRiseApp(tk.Tk):
         header_frame = tk.Frame(self, bg="#111111", height=80)
         header_frame.pack(fill="x")
 
-        title_label = tk.Label(header_frame, text="GameRise", font=("Arial", 36), fg="#FF5733", bg="#111111")
-        title_label.pack(pady=10)
+        self.title_label = tk.Label(header_frame, text="GameRise", font=("Arial", 36), fg="#FF5733", bg="#111111")
+        self.title_label.pack(pady=10)
 
         # Main Content
         content_frame = tk.Frame(self, bg="#222222")
@@ -65,15 +67,12 @@ class GameRiseApp(tk.Tk):
         copyright_label.pack(pady=5)
 
         # Visual Effects and Animations (Placeholder - Replace with actual implementation)
-        # Example:
-        self.after(1000, lambda: self.add_visual_effect())
+        self.after(1000, self.add_visual_effect)
 
     def add_visual_effect(self):
-        # Example: Fade in/out effect on the title label
-        title_label.config(fg="#FF5733")
-        self.after(500, lambda: title_label.config(fg="#FFFFFF"))
-        self.after(1000, lambda: self.add_visual_effect())
+        add_visual_effect(self.title_label, self.after)
 
 if __name__ == "__main__":
     app = GameRiseApp()
     app.mainloop()
+```
